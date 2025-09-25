@@ -3,6 +3,8 @@ import { useAuth } from '@/hooks/use-auth';
 import { CanteenStatus } from '@/components/canteen/CanteenStatus';
 import { FoodMenu } from '@/components/canteen/FoodMenu';
 import { Cart } from '@/components/canteen/Cart';
+import { SmartMealPlanner } from '@/components/canteen/SmartMealPlanner';
+import { AIChatbot } from '@/components/ui/ai-chatbot';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -14,7 +16,8 @@ import {
   Users, 
   MessageSquare,
   ChefHat,
-  LogOut
+  LogOut,
+  Brain
 } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
@@ -63,7 +66,7 @@ export default function Dashboard() {
 
       <div className="container mx-auto px-4 py-6">
         <Tabs defaultValue="menu" className="w-full">
-          <TabsList className="grid w-full grid-cols-5 mb-6">
+          <TabsList className="grid w-full grid-cols-6 mb-6">
             <TabsTrigger value="menu" className="flex items-center gap-1">
               <ChefHat className="h-4 w-4" />
               <span className="hidden sm:inline">Menu</span>
@@ -71,6 +74,10 @@ export default function Dashboard() {
             <TabsTrigger value="cart" className="flex items-center gap-1">
               <ShoppingCart className="h-4 w-4" />
               <span className="hidden sm:inline">Cart</span>
+            </TabsTrigger>
+            <TabsTrigger value="planner" className="flex items-center gap-1">
+              <Brain className="h-4 w-4" />
+              <span className="hidden sm:inline">Planner</span>
             </TabsTrigger>
             <TabsTrigger value="social" className="flex items-center gap-1">
               <Users className="h-4 w-4" />
@@ -93,6 +100,10 @@ export default function Dashboard() {
 
           <TabsContent value="cart" className="space-y-6">
             <Cart />
+          </TabsContent>
+
+          <TabsContent value="planner" className="space-y-6">
+            <SmartMealPlanner />
           </TabsContent>
 
           <TabsContent value="social" className="space-y-6">
@@ -275,6 +286,9 @@ export default function Dashboard() {
           </TabsContent>
         </Tabs>
       </div>
+
+      {/* AI Chatbot */}
+      <AIChatbot />
     </div>
   );
 }
